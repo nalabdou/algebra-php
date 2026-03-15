@@ -1,0 +1,8 @@
+# All files — Nadim is the default reviewer for every PR
+* @nalabdou
+
+# Expression engine — requires extra scrutiny
+src/Expression/ @nalabdou
+
+# Public contracts — breaking changes need careful review
+src/Contract/ @nalabdou

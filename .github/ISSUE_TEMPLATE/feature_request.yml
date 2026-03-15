@@ -1,0 +1,52 @@
+name: Feature Request
+description: Suggest a new operation, aggregate, or improvement
+title: "[Feature]: "
+labels: [enhancement]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting an improvement to algebra-php.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem / motivation
+      description: What problem does this feature solve? What is currently inconvenient?
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+      description: Describe the feature and how it would work.
+      render: php
+      placeholder: |
+        // Example of the proposed API
+        Algebra::from($orders)
+            ->newOperation(...)
+            ->toArray();
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Other approaches you considered, and why you prefer the proposed solution.
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Type
+      options:
+        - New operation
+        - New aggregate function
+        - New adapter
+        - Performance improvement
+        - API ergonomics
+        - Other
+    validations:
+      required: true
