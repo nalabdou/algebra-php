@@ -1,0 +1,56 @@
+{
+    "name": "nalabdou/algebra-php",
+    "description": "Pure PHP relational algebra engine — JOIN, PIVOT, WINDOW, GROUP BY, 60+ operations. Zero dependencies.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "algebra",
+        "relational",
+        "collection",
+        "join",
+        "pivot",
+        "window-functions",
+        "group-by",
+        "aggregate",
+        "filter",
+        "data-pipeline"
+    ],
+    "authors": [
+        {
+            "name": "Nadim Al Abdou",
+            "email": "nadim.alabdou@gmail.com",
+            "homepage": "https://github.com/nalabdou",
+            "role": "Author"
+        }
+    ],
+    "require": {
+        "php": "^8.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5",
+        "phpstan/phpstan": "^2.0",
+        "friendsofphp/php-cs-fixer": "^3.60"
+    },
+    "autoload": {
+        "psr-4": {
+            "Nalabdou\\Algebra\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Nalabdou\\Algebra\\Tests\\": "tests/"
+        }
+    },
+    "suggest": {
+        "ext-apcu": "APCu expression cache — significant speedup on repeated pipeline executions"
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "platform": {
+            "php": "8.2.0"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

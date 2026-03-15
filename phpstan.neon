@@ -1,0 +1,15 @@
+parameters:
+    level: 5
+
+    paths:
+        - src
+
+    treatPhpDocTypesAsCertain: false
+    reportUnmatchedIgnoredErrors: false
+
+    ignoreErrors:
+        # Statistical aggregates intentionally return array|null (valid implementation of mixed)
+        - '#Method Nalabdou\\Algebra\\Aggregate\\Statistical\\NtileAggregate::compute\(\)#'
+        - '#Method Nalabdou\\Algebra\\Aggregate\\Statistical\\CumeDistAggregate::compute\(\)#'
+        # Node subclasses use match() exhaustiveness — safe
+        - '#Unhandled match case#'

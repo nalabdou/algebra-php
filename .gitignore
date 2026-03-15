@@ -1,0 +1,59 @@
+# Composer vendor directory
+/vendor/
+
+# Composer lock file if you want to ignore it (optional)
+# composer.lock
+
+# PHPStorm / JetBrains IDEs
+/.idea/
+/*.iml
+
+# Mac OS
+.DS_Store
+
+# Logs and cache
+/logs/
+/cache/
+/tmp/
+/temp/
+
+# PHPUnit
+/coverage/
+/phpunit.xml.cache
+
+# PHPStan cache
+/phpstan/cache/
+
+# Symfony / Laravel / other frameworks cache
+/var/
+/storage/framework/cache/
+/storage/framework/views/
+/storage/logs/
+
+# Node / frontend (if using)
+node_modules/
+npm-debug.log
+yarn-error.log
+/dist/
+/build/
+
+# Environment files (never commit .env secrets)
+.env
+.env.local
+.env.*.local
+
+# IDE specific
+*.swp
+*.swo
+*.vscode/
+
+# Backup / temporary files
+*~
+*.bak
+*.orig
+
+# Generated documentation
+/docs/html/
+
+*.cache
+*.phar
