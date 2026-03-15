@@ -389,7 +389,7 @@ final class DoctrineCollectionAdapter implements AdapterInterface
 ```
 
 Register in a custom `CollectionFactory` or use the framework bundles:
-- `nalabdou/algebra-symfony` — [*Comming soon*] Symfony bundle with Doctrine, Profiler, Commands
+- `nalabdou/algebra-symfony` — Symfony bundle with Doctrine, Profiler, Commands
 - `nalabdou/algebra-laravel` — [*Comming soon*] Laravel Service Provider, Eloquent macros, Artisan
 - `nalabdou/algebra-twig` — [*Comming soon*] All operations as Twig filters
 

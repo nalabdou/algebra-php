@@ -17,7 +17,7 @@ namespace Nalabdou\Algebra\Contract;
  *   - {@see \Nalabdou\Algebra\Adapter\ArrayAdapter}        — plain arrays
  *
  * Third-party adapters (separate packages):
- *   - `nalabdou/algebra-doctrine` — [*Comming soon*] Doctrine collections, QueryBuilder
+ *   - `nalabdou/algebra-doctrine` — Doctrine collections, QueryBuilder
  *   - `nalabdou/algebra-laravel`  — [*Comming soon*] Eloquent collections
  *   - `nalabdou/algebra-csv`      — [*Comming soon*] CSV file streaming
  */
