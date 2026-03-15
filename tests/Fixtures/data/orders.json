@@ -1,0 +1,12 @@
+[
+  {"id":1,  "userId":10, "amount":250.00, "status":"paid",      "region":"Nord",  "month":"Jan"},
+  {"id":2,  "userId":20, "amount":150.00, "status":"pending",   "region":"Sud",   "month":"Jan"},
+  {"id":3,  "userId":10, "amount":400.00, "status":"paid",      "region":"Est",   "month":"Feb"},
+  {"id":4,  "userId":30, "amount":80.00,  "status":"cancelled", "region":"Nord",  "month":"Feb"},
+  {"id":5,  "userId":20, "amount":500.00, "status":"paid",      "region":"Sud",   "month":"Mar"},
+  {"id":6,  "userId":10, "amount":120.00, "status":"pending",   "region":"Ouest", "month":"Mar"},
+  {"id":7,  "userId":30, "amount":330.00, "status":"paid",      "region":"Nord",  "month":"Jan"},
+  {"id":8,  "userId":40, "amount":90.00,  "status":"refunded",  "region":"Est",   "month":"Feb"},
+  {"id":9,  "userId":20, "amount":760.00, "status":"paid",      "region":"Sud",   "month":"Mar"},
+  {"id":10, "userId":40, "amount":210.00, "status":"paid",      "region":"Ouest", "month":"Jan"}
+]
