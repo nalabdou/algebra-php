@@ -5,10 +5,16 @@ declare(strict_types=1);
 namespace Nalabdou\Algebra\Tests\Unit\Collection;
 
 use Nalabdou\Algebra\Algebra;
+use Nalabdou\Algebra\Collection\CollectionFactory;
+use Nalabdou\Algebra\Collection\MaterializedCollection;
 use Nalabdou\Algebra\Collection\RelationalCollection;
 use Nalabdou\Algebra\Operation\Utility\FilterOperation;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(RelationalCollection::class)]
+#[CoversClass(MaterializedCollection::class)]
+#[CoversClass(CollectionFactory::class)]
 final class RelationalCollectionTest extends TestCase
 {
     protected function setUp(): void

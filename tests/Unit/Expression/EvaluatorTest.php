@@ -4,11 +4,37 @@ declare(strict_types=1);
 
 namespace Nalabdou\Algebra\Tests\Unit\Expression;
 
+use Nalabdou\Algebra\Expression\Evaluator;
 use Nalabdou\Algebra\Expression\ExpressionCache;
 use Nalabdou\Algebra\Expression\ExpressionEvaluator;
+use Nalabdou\Algebra\Expression\Node\ArrayNode;
+use Nalabdou\Algebra\Expression\Node\BinaryNode;
+use Nalabdou\Algebra\Expression\Node\CallNode;
+use Nalabdou\Algebra\Expression\Node\LiteralNode;
+use Nalabdou\Algebra\Expression\Node\NameNode;
+use Nalabdou\Algebra\Expression\Node\Node;
+use Nalabdou\Algebra\Expression\Node\PropertyNode;
+use Nalabdou\Algebra\Expression\Node\SubscriptNode;
+use Nalabdou\Algebra\Expression\Node\TernaryNode;
+use Nalabdou\Algebra\Expression\Node\UnaryNode;
 use Nalabdou\Algebra\Expression\PropertyAccessor;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(Evaluator::class)]
+#[CoversClass(ExpressionEvaluator::class)]
+#[CoversClass(ExpressionCache::class)]
+#[CoversClass(PropertyAccessor::class)]
+#[CoversClass(Node::class)]
+#[CoversClass(LiteralNode::class)]
+#[CoversClass(NameNode::class)]
+#[CoversClass(BinaryNode::class)]
+#[CoversClass(UnaryNode::class)]
+#[CoversClass(CallNode::class)]
+#[CoversClass(TernaryNode::class)]
+#[CoversClass(SubscriptNode::class)]
+#[CoversClass(PropertyNode::class)]
+#[CoversClass(ArrayNode::class)]
 final class EvaluatorTest extends TestCase
 {
     private ExpressionEvaluator $eval;

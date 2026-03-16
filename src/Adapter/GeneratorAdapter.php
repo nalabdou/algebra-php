@@ -28,7 +28,9 @@ final class GeneratorAdapter implements AdapterInterface
         return $input instanceof \Generator;
     }
 
-    /**@param \Generator $input */
+    /**
+     * @param \Generator $input
+     */
     public function toArray(mixed $input): array
     {
         return \iterator_to_array($input, preserve_keys: false);

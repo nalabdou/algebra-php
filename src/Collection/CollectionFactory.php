@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Nalabdou\Algebra\Collection;
 
+use Nalabdou\Algebra\Adapter\AdapterRegistry;
 use Nalabdou\Algebra\Aggregate\AggregateRegistry;
 use Nalabdou\Algebra\Contract\AdapterInterface;
 use Nalabdou\Algebra\Contract\PlannerInterface;
@@ -13,30 +14,42 @@ use Nalabdou\Algebra\Expression\PropertyAccessor;
 /**
  * Factory that converts any supported input into a {@see RelationalCollection}.
  *
- * Adapters are checked in registration order — the first one that returns
- * `true` from {@see AdapterInterface::supports()} is used. Built-in order:
+ * Adapters are resolved from an {@see AdapterRegistry} in priority order.
+ * The first adapter whose {@see AdapterInterface::supports()} returns `true`
+ * is used to convert the input.
  *
- *  1. {@see \Nalabdou\Algebra\Adapter\GeneratorAdapter}   — PHP generators
- *  2. {@see \Nalabdou\Algebra\Adapter\TraversableAdapter} — \Traversable
- *  3. {@see \Nalabdou\Algebra\Adapter\ArrayAdapter}       — plain PHP arrays
+ * ### Default resolution order
  *
- * Plain arrays are also handled inline before the adapter loop as a fast path.
+ * 1. Fast path — plain PHP `array` (no adapter overhead)
+ * 2. `GeneratorAdapter` (priority 20)
+ * 3. `TraversableAdapter` (priority 10)
+ * 4. `ArrayAdapter` (priority 0)
+ * 5. Any custom adapters registered via `Algebra::adapters()->register()`
+ *
+ * ### Custom adapter registration
+ *
+ * ```php
+ * // Register once at application bootstrap
+ * Algebra::adapters()->register(new CsvFileAdapter(), priority: 50);
+ * Algebra::adapters()->register(new DoctrineQueryBuilderAdapter(), priority: 100);
+ *
+ * // Then Algebra::from() accepts the new input types automatically
+ * Algebra::from('/data/orders.csv')->where(...)->toArray();
+ * Algebra::from($queryBuilder)->groupBy('region')->toArray();
+ * ```
  *
  * ### Framework-specific factories
  * Framework bundles (algebra-symfony, algebra-laravel) extend this factory
- * by injecting additional adapters (Doctrine, Eloquent, QueryBuilder…).
+ * by injecting additional adapters into the `AdapterRegistry` singleton.
  */
 final class CollectionFactory
 {
-    /**
-     * @param AdapterInterface[] $adapters ordered list of adapters to try
-     */
     public function __construct(
         private readonly PlannerInterface $planner,
         private readonly ExpressionEvaluator $evaluator,
         private readonly PropertyAccessor $accessor,
         private readonly AggregateRegistry $aggregates,
-        private readonly array $adapters = [],
+        private readonly AdapterRegistry $adapterRegistry,
     ) {
     }
 
@@ -62,20 +75,17 @@ final class CollectionFactory
 
     private function resolve(mixed $input): array
     {
+        // Fast path — arrays are by far the most common input
         if (\is_array($input)) {
             return \array_values($input);
         }
 
-        foreach ($this->adapters as $adapter) {
-            if ($adapter->supports($input)) {
-                return $adapter->toArray($input);
-            }
+        $adapter = $this->adapterRegistry->find($input);
+
+        if (null !== $adapter) {
+            return $adapter->toArray($input);
         }
 
-        if ($input instanceof \Traversable) {
-            return \iterator_to_array($input, preserve_keys: false);
-        }
-
-        throw new \InvalidArgumentException(\sprintf('algebra-php cannot convert %s into a RelationalCollection. Register a custom %s implementation.', \get_debug_type($input), AdapterInterface::class));
+        throw new \InvalidArgumentException(\sprintf('algebra-php cannot convert %s into a RelationalCollection. Register a custom %s via Algebra::adapters()->register(new YourAdapter()).', \get_debug_type($input), AdapterInterface::class));
     }
 }

@@ -118,7 +118,7 @@ Algebra::from($a)->symmetricDiff($b, by: 'id')->toArray();
 | `innerJoin` | Matched rows | Yes (full right row) |
 
 `intersect` / `except` and `semiJoin` / `antiJoin` are functionally equivalent
-for arrays of flat objects. Use `intersect` / `except` for set algebra-php semantics
+for arrays of flat objects. Use `intersect` / `except` for set algebra semantics
 and `semiJoin` / `antiJoin` when matching on different key names.
 
 ---

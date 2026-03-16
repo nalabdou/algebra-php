@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Nalabdou\Algebra\Tests\Unit\Algebra;
 
+use Nalabdou\Algebra\Adapter\AdapterRegistry;
 use Nalabdou\Algebra\Aggregate\AggregateRegistry;
 use Nalabdou\Algebra\Algebra;
 use Nalabdou\Algebra\Collection\CollectionFactory;
@@ -12,8 +13,12 @@ use Nalabdou\Algebra\Expression\ExpressionCache;
 use Nalabdou\Algebra\Expression\ExpressionEvaluator;
 use Nalabdou\Algebra\Expression\PropertyAccessor;
 use Nalabdou\Algebra\Planner\QueryPlanner;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(Algebra::class)]
+#[CoversClass(AdapterRegistry::class)]
+#[CoversClass(ExpressionCache::class)]
 final class AlgebraTest extends TestCase
 {
     protected function setUp(): void
@@ -167,6 +172,49 @@ final class AlgebraTest extends TestCase
 
         self::assertArrayHasKey('first', $results);
         self::assertArrayHasKey('second', $results);
+    }
+
+    public function testAdaptersReturnsAdapterRegistry(): void
+    {
+        self::assertInstanceOf(AdapterRegistry::class, Algebra::adapters());
+    }
+
+    public function testAdaptersIsSingleton(): void
+    {
+        self::assertSame(Algebra::adapters(), Algebra::adapters());
+    }
+
+    public function testAdaptersHasThreeBuiltins(): void
+    {
+        self::assertSame(3, Algebra::adapters()->count());
+    }
+
+    public function testResetClearsAdapterRegistry(): void
+    {
+        $before = Algebra::adapters();
+        Algebra::reset();
+        self::assertNotSame($before, Algebra::adapters());
+    }
+
+    public function testCustomAdapterAccessibleViaAlgebraFrom(): void
+    {
+        Algebra::adapters()->register(
+            new class implements \Nalabdou\Algebra\Contract\AdapterInterface {
+                public function supports(mixed $input): bool
+                {
+                    return '__test__' === $input;
+                }
+
+                public function toArray(mixed $input): array
+                {
+                    return [['x' => 1]];
+                }
+            },
+            priority: 50
+        );
+
+        $result = Algebra::from('__test__')->toArray();
+        self::assertSame(1, $result[0]['x']);
     }
 
     public function testExpressionCachePopulatedAfterEvaluation(): void

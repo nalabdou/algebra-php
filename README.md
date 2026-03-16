@@ -109,7 +109,7 @@ Algebra::parallel(['a' => $c1, 'b' => $c2])  // concurrent via PHP Fibers
 ### Filter & projection
 
 ```php
-// WHERE — string expression (Symfony ExpressionLanguage)
+// WHERE — string expression
 ->where("item['status'] == 'paid' and item['amount'] > 100")
 ->where("contains(item['email'], '@company.com')")
 ->where("length(item['name']) > 3")
@@ -251,7 +251,7 @@ Algebra::parallel(['a' => $c1, 'b' => $c2])  // concurrent via PHP Fibers
 
 ## Expression language
 
-String expressions use Symfony ExpressionLanguage. The row is exposed as `item`:
+String expressions use ExpressionLanguage. The row is exposed as `item`:
 
 ```php
 ->where("item['status'] == 'paid'")
@@ -467,7 +467,7 @@ src/
 │   ├── QueryPlanner.php               ← runs optimization passes
 │   └── Pass/                           ← 4 passes (filter pushdown, sort dedup, map collapse, pushFilterBeforeAntiJoin)
 ├── Expression/
-│   ├── ExpressionEvaluator.php        ← Symfony ExpressionLanguage + fast-path
+│   ├── ExpressionEvaluator.php        ← ExpressionLanguage + fast-path
 │   ├── Parser.php                      ← expression parser
 │   ├── Lexer.php                       ← tokenizes expressions
 │   ├── ExpressionCache.php            ← APCu-backed cache

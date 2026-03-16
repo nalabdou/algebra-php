@@ -31,7 +31,7 @@ php demo/benchmark.php 10000 10
 
 ## Use closures over string expressions
 
-String expressions go through Symfony ExpressionLanguage — more flexible, but slower.
+String expressions go through ExpressionLanguage — more flexible, but slower.
 Closures run as native PHP.
 
 ```php
@@ -158,11 +158,3 @@ $results = Algebra::parallel([
 Fibers use cooperative multitasking within one process — no true parallelism, but they amortize computation-heavy pipelines by interleaving their work.
 
 ---
-
-## Profiling in Symfony
-
-Install `nalabdou/algebra-symfony` to get a Web Profiler panel showing:
-- Per-operation execution time
-- Input/output row counts
-- Cache hit/miss for expressions
-- Query plan diff (original vs optimized)

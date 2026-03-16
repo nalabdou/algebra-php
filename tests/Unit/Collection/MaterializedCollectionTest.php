@@ -7,8 +7,10 @@ namespace Nalabdou\Algebra\Tests\Unit\Collection;
 use Nalabdou\Algebra\Algebra;
 use Nalabdou\Algebra\Collection\MaterializedCollection;
 use Nalabdou\Algebra\Operation\Utility\FilterOperation;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(MaterializedCollection::class)]
 final class MaterializedCollectionTest extends TestCase
 {
     protected function setUp(): void

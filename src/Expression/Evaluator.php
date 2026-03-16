@@ -136,10 +136,8 @@ final class Evaluator
             '+' => $left + $right,
             '-' => $left - $right,
             '*' => $left * $right,
-            '/' => 0 == $right
-                        ? throw new \RuntimeException('Division by zero in expression') : $left / $right,
-            '%' => 0 == $right
-                        ? throw new \RuntimeException('Modulo by zero in expression') : $left % $right,
+            '/' => 0 == $right ? (throw new \RuntimeException('Division by zero in expression')) : $left / $right,
+            '%' => 0 == $right ? (throw new \RuntimeException('Modulo by zero in expression')) : $left % $right,
             '**' => $left ** $right,
             '~' => (string) $left.(string) $right,
             default => throw new \RuntimeException("Unknown binary operator: {$node->operator}"),

@@ -11,8 +11,15 @@ use Nalabdou\Algebra\Operation\Aggregate\GroupByOperation;
 use Nalabdou\Algebra\Operation\Aggregate\PartitionOperation;
 use Nalabdou\Algebra\Operation\Aggregate\TallyOperation;
 use Nalabdou\Algebra\Result\PartitionResult;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(GroupByOperation::class)]
+#[CoversClass(AggregateOperation::class)]
+#[CoversClass(TallyOperation::class)]
+#[CoversClass(PartitionOperation::class)]
+#[CoversClass(AggregateRegistry::class)]
+#[CoversClass(PartitionResult::class)]
 final class AggregateOperationTest extends TestCase
 {
     private \Nalabdou\Algebra\Expression\ExpressionEvaluator $evaluator;

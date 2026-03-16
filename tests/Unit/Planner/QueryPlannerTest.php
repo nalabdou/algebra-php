@@ -11,9 +11,19 @@ use Nalabdou\Algebra\Operation\Join\SemiJoinOperation;
 use Nalabdou\Algebra\Operation\Utility\FilterOperation;
 use Nalabdou\Algebra\Operation\Utility\MapOperation;
 use Nalabdou\Algebra\Operation\Utility\SortOperation;
+use Nalabdou\Algebra\Planner\Pass\CollapseConsecutiveMaps;
+use Nalabdou\Algebra\Planner\Pass\EliminateRedundantSort;
+use Nalabdou\Algebra\Planner\Pass\PushFilterBeforeAntiJoin;
+use Nalabdou\Algebra\Planner\Pass\PushFilterBeforeJoin;
 use Nalabdou\Algebra\Planner\QueryPlanner;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(QueryPlanner::class)]
+#[CoversClass(PushFilterBeforeJoin::class)]
+#[CoversClass(PushFilterBeforeAntiJoin::class)]
+#[CoversClass(EliminateRedundantSort::class)]
+#[CoversClass(CollapseConsecutiveMaps::class)]
 final class QueryPlannerTest extends TestCase
 {
     private QueryPlanner $planner;

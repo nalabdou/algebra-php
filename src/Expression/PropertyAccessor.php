@@ -10,10 +10,8 @@ namespace Nalabdou\Algebra\Expression;
  * Resolves dot-path expressions like `"user.address.city"` against either
  * an associative array or an object with public properties or getters.
  *
- * Zero external dependencies — no Symfony, no reflection overhead for
- * the common single-level case.
- *
  * Single-level access uses a fast path that avoids all string splitting:
+ *
  * ```php
  * $accessor->get(['status' => 'paid'], 'status');  // O(1)
  * ```

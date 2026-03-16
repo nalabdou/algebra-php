@@ -1,6 +1,6 @@
 # Built-in adapters
 
-algebra ships three built-in adapters that cover the most common PHP input types.
+algebra-php ships three built-in adapters that cover the most common PHP input types.
 All are registered automatically in `Algebra::factory()`.
 
 ---

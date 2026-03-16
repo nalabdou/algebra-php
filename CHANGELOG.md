@@ -84,7 +84,7 @@ All notable changes to `nalabdou/algebra` are documented here.
 - `PartitionResult` — `pass()`, `fail()`, `passCount()`, `failCount()`, `passRate()`, `totalCount()`
 
 ### Expression engine
-- `ExpressionEvaluator` — Symfony ExpressionLanguage with fast dot-path shortcut
+- `ExpressionEvaluator` — Pure ExpressionLanguage with fast dot-path shortcut
 - `ExpressionCompiler` — compiles hot expressions to native PHP closures
 - `ExpressionCache` — APCu-backed with in-process array fallback
 - `PropertyAccessor` — deep dot-path resolver on arrays and objects

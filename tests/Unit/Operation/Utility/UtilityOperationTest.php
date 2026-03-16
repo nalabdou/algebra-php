@@ -18,8 +18,21 @@ use Nalabdou\Algebra\Operation\Utility\SliceOperation;
 use Nalabdou\Algebra\Operation\Utility\SortOperation;
 use Nalabdou\Algebra\Operation\Utility\TransposeOperation;
 use Nalabdou\Algebra\Operation\Utility\UniqueByOperation;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(FilterOperation::class)]
+#[CoversClass(MapOperation::class)]
+#[CoversClass(SortOperation::class)]
+#[CoversClass(SliceOperation::class)]
+#[CoversClass(UniqueByOperation::class)]
+#[CoversClass(ReindexOperation::class)]
+#[CoversClass(ExtractOperation::class)]
+#[CoversClass(ChunkOperation::class)]
+#[CoversClass(FillGapsOperation::class)]
+#[CoversClass(TransposeOperation::class)]
+#[CoversClass(SampleOperation::class)]
+#[CoversClass(PivotOperation::class)]
 final class UtilityOperationTest extends TestCase
 {
     private \Nalabdou\Algebra\Expression\ExpressionEvaluator $evaluator;

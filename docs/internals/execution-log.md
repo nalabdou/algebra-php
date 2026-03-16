@@ -131,10 +131,7 @@ $log = $collection->materialize()->executionLog();
 
 ## Using the log in a profiler panel
 
-For Symfony applications, `nalabdou/algebra-symfony` provides a Web Profiler
-data collector that renders the execution log as a table in the Profiler.
-
-For other frameworks, you can integrate the log manually:
+You can integrate the log manually:
 
 ```php
 // Middleware or event listener

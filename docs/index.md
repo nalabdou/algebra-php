@@ -47,5 +47,5 @@ Pure PHP relational algebra engine — JOIN · PIVOT · WINDOW · GROUP BY · 60
 ### Reference
 - [API reference](api-reference.md) — every public method
 - [Performance guide](performance.md)
-- [Upgrading](upgrading.md)
 - [Contributing](contributing.md)
+

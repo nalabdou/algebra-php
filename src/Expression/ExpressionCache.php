@@ -48,6 +48,7 @@ final class ExpressionCache
         $key = $this->buildKey($expression);
 
         if ($this->apcuAvailable) {
+            $success = false;
             $result = \apcu_fetch($key, $success);
 
             return $success ? $result : null;

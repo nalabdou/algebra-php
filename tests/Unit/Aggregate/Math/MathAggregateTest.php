@@ -13,8 +13,18 @@ use Nalabdou\Algebra\Aggregate\Math\PercentileAggregate;
 use Nalabdou\Algebra\Aggregate\Math\StddevAggregate;
 use Nalabdou\Algebra\Aggregate\Math\SumAggregate;
 use Nalabdou\Algebra\Aggregate\Math\VarianceAggregate;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(CountAggregate::class)]
+#[CoversClass(SumAggregate::class)]
+#[CoversClass(AvgAggregate::class)]
+#[CoversClass(MinAggregate::class)]
+#[CoversClass(MaxAggregate::class)]
+#[CoversClass(MedianAggregate::class)]
+#[CoversClass(StddevAggregate::class)]
+#[CoversClass(VarianceAggregate::class)]
+#[CoversClass(PercentileAggregate::class)]
 final class MathAggregateTest extends TestCase
 {
     public function testCountNonEmpty(): void

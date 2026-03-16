@@ -140,7 +140,7 @@ The spec string `'sum(amount)'` is parsed by `AggregateOperation` which looks up
 
 Two styles:
 
-**String expressions** — evaluated by Symfony ExpressionLanguage:
+**String expressions** — evaluated by ExpressionLanguage:
 ```php
 ->where("item['status'] == 'paid' and item['amount'] > 100")
 ```

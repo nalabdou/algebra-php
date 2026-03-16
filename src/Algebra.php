@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Nalabdou\Algebra;
 
-use Nalabdou\Algebra\Adapter\ArrayAdapter;
-use Nalabdou\Algebra\Adapter\GeneratorAdapter;
-use Nalabdou\Algebra\Adapter\TraversableAdapter;
+use Nalabdou\Algebra\Adapter\AdapterRegistry;
 use Nalabdou\Algebra\Aggregate\AggregateRegistry;
 use Nalabdou\Algebra\Collection\CollectionFactory;
 use Nalabdou\Algebra\Collection\RelationalCollection;
@@ -16,14 +14,11 @@ use Nalabdou\Algebra\Expression\PropertyAccessor;
 use Nalabdou\Algebra\Planner\QueryPlanner;
 
 /**
- * algebra-php — pure relational algebra engine.
+ * algebra-php — pure PHP relational algebra engine.
  *
  * This class is the **single public entry point**. All infrastructure
- * (factory, evaluator, planner, aggregates) is created lazily on first
- * use and reused for the lifetime of the process.
- *
- * **Zero runtime dependencies** — no Symfony, no Doctrine, no framework.
- * The expression engine (Lexer → Parser → Evaluator) is written in pure PHP.
+ * (factory, evaluator, planner, aggregates, adapters) is created lazily on
+ * first use and reused for the lifetime of the process.
  *
  * ---
  *
@@ -38,6 +33,27 @@ use Nalabdou\Algebra\Planner\QueryPlanner;
  *     ->aggregate(['revenue' => 'sum(amount)', 'orders' => 'count(*)'])
  *     ->orderBy('revenue', 'desc')
  *     ->toArray();
+ * ```
+ *
+ * ---
+ *
+ * ### Registering custom adapters
+ *
+ * Call once at application bootstrap — no factory configuration needed:
+ * ```php
+ * Algebra::adapters()->register(new CsvFileAdapter(), priority: 50);
+ * Algebra::adapters()->register(new DoctrineQueryBuilderAdapter(), priority: 100);
+ *
+ * // Now accepted by Algebra::from()
+ * Algebra::from('/data/orders.csv')->where(...)->toArray();
+ * Algebra::from($queryBuilder)->groupBy('region')->toArray();
+ * ```
+ *
+ * ### Registering custom aggregates
+ * ```php
+ * Algebra::aggregates()->register(new GeomeanAggregate());
+ *
+ * Algebra::from($products)->aggregate(['geo' => 'geomean(price)'])->toArray();
  * ```
  *
  * ---
@@ -81,6 +97,7 @@ final class Algebra
     private static ?ExpressionEvaluator $evaluator = null;
     private static ?PropertyAccessor $accessor = null;
     private static ?AggregateRegistry $aggregates = null;
+    private static ?AdapterRegistry $adapters = null;
     private static ?QueryPlanner $planner = null;
     private static ?ExpressionCache $cache = null;
 
@@ -88,12 +105,14 @@ final class Algebra
      * Create a lazy {@see RelationalCollection} from any supported input.
      *
      * Accepts: plain PHP array, `\Generator`, any `\Traversable`,
-     * or any custom adapter registered in the {@see CollectionFactory}.
+     * or any custom adapter registered via {@see Algebra::adapters()}.
      *
      * ```php
      * Algebra::from($orders)
      * Algebra::from($generator)
      * Algebra::from(new ArrayObject($rows))
+     * Algebra::from('/data/orders.csv')  // after registering CsvFileAdapter
+     * Algebra::from($queryBuilder)       // after registering DoctrineQueryBuilderAdapter
      * ```
      */
     public static function from(mixed $input): RelationalCollection
@@ -152,7 +171,7 @@ final class Algebra
     }
 
     /**
-     * The collection factory.
+     * The collection factory — creates {@see RelationalCollection} from any input.
      */
     public static function factory(): CollectionFactory
     {
@@ -161,12 +180,28 @@ final class Algebra
             evaluator: self::evaluator(),
             accessor: self::accessor(),
             aggregates: self::aggregates(),
-            adapters: [
-                new GeneratorAdapter(),
-                new TraversableAdapter(),
-                new ArrayAdapter(),
-            ],
+            adapterRegistry: self::adapters(),
         );
+    }
+
+    /**
+     * The adapter registry — register custom input adapters here.
+     *
+     * Built-in adapters (Generator, Traversable, Array) are pre-registered.
+     * Custom adapters are tried before built-ins when given a higher priority.
+     *
+     * ```php
+     * // Register once at bootstrap — works everywhere after that
+     * Algebra::adapters()->register(new CsvFileAdapter(), priority: 50);
+     * Algebra::adapters()->register(new DoctrineQueryBuilderAdapter(), priority: 100);
+     *
+     * // All pipelines automatically support the new input types
+     * Algebra::from('/data/orders.csv')->where(...)->toArray();
+     * ```
+     */
+    public static function adapters(): AdapterRegistry
+    {
+        return self::$adapters ??= new AdapterRegistry();
     }
 
     /**
@@ -233,6 +268,7 @@ final class Algebra
         self::$evaluator = null;
         self::$accessor = null;
         self::$aggregates = null;
+        self::$adapters = null;
         self::$planner = null;
         self::$cache = null;
     }

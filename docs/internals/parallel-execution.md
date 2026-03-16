@@ -97,10 +97,10 @@ $dashboard = Algebra::parallel([
 
 ## Requirements
 
-PHP 8.1+ for `\Fiber` support. If you're on PHP 8.2, use sequential execution:
+PHP 8.1+ for `\Fiber` support. If you're on PHP 8.0, use sequential execution:
 
 ```php
-// PHP 8.2 fallback
+// PHP 8.0 fallback
 $results = [
     'paid'   => Algebra::from($orders)->where(...)->toArray(),
     'report' => Algebra::from($orders)->groupBy(...)->toArray(),
