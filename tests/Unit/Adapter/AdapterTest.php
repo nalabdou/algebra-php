@@ -8,8 +8,12 @@ use Nalabdou\Algebra\Adapter\ArrayAdapter;
 use Nalabdou\Algebra\Adapter\GeneratorAdapter;
 use Nalabdou\Algebra\Adapter\TraversableAdapter;
 use Nalabdou\Algebra\Algebra;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(ArrayAdapter::class)]
+#[CoversClass(GeneratorAdapter::class)]
+#[CoversClass(TraversableAdapter::class)]
 final class AdapterTest extends TestCase
 {
     protected function setUp(): void

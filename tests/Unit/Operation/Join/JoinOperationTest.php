@@ -11,8 +11,15 @@ use Nalabdou\Algebra\Operation\Join\JoinOperation;
 use Nalabdou\Algebra\Operation\Join\LeftJoinOperation;
 use Nalabdou\Algebra\Operation\Join\SemiJoinOperation;
 use Nalabdou\Algebra\Operation\Join\ZipOperation;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(JoinOperation::class)]
+#[CoversClass(LeftJoinOperation::class)]
+#[CoversClass(SemiJoinOperation::class)]
+#[CoversClass(AntiJoinOperation::class)]
+#[CoversClass(CrossJoinOperation::class)]
+#[CoversClass(ZipOperation::class)]
 final class JoinOperationTest extends TestCase
 {
     private \Nalabdou\Algebra\Expression\PropertyAccessor $accessor;

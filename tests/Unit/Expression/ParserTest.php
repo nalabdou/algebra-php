@@ -16,8 +16,19 @@ use Nalabdou\Algebra\Expression\Node\SubscriptNode;
 use Nalabdou\Algebra\Expression\Node\TernaryNode;
 use Nalabdou\Algebra\Expression\Node\UnaryNode;
 use Nalabdou\Algebra\Expression\Parser;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(Parser::class)]
+#[CoversClass(LiteralNode::class)]
+#[CoversClass(NameNode::class)]
+#[CoversClass(BinaryNode::class)]
+#[CoversClass(UnaryNode::class)]
+#[CoversClass(CallNode::class)]
+#[CoversClass(TernaryNode::class)]
+#[CoversClass(SubscriptNode::class)]
+#[CoversClass(PropertyNode::class)]
+#[CoversClass(ArrayNode::class)]
 final class ParserTest extends TestCase
 {
     private function parse(string $expr): Node

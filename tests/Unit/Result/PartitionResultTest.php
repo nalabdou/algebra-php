@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Nalabdou\Algebra\Tests\Unit\Result;
 
 use Nalabdou\Algebra\Result\PartitionResult;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(PartitionResult::class)]
 final class PartitionResultTest extends TestCase
 {
     private PartitionResult $result;

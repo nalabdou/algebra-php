@@ -8,8 +8,12 @@ use Nalabdou\Algebra\Algebra;
 use Nalabdou\Algebra\Operation\Window\MovingAvgOperation;
 use Nalabdou\Algebra\Operation\Window\NormalizeOperation;
 use Nalabdou\Algebra\Operation\Window\WindowOperation;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(WindowOperation::class)]
+#[CoversClass(MovingAvgOperation::class)]
+#[CoversClass(NormalizeOperation::class)]
 final class WindowOperationTest extends TestCase
 {
     private \Nalabdou\Algebra\Expression\PropertyAccessor $accessor;

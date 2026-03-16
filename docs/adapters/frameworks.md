@@ -1,6 +1,6 @@
 # Framework adapters
 
-algebra has zero runtime dependencies by design. Framework-specific adapters
+algebra-php has zero runtime dependencies by design. Framework-specific adapters
 live in separate packages so you only install what you need.
 
 ---
@@ -9,11 +9,11 @@ live in separate packages so you only install what you need.
 
 | Package | Adapts | Status |
 |---|---|---|
-|[`nalabdou/algebra-symfony`](https://github.com/nalabdou/algebra-symfony) — Doctrine Collections, QueryBuilder
-| `nalabdou/algebra-laravel` | [*Comming soon*] Eloquent Collections, Builder | Planned |
-| `nalabdou/algebra-twig` | [*Comming soon*] All ops as Twig filters | Planned |
-| `nalabdou/algebra-csv` | [*Comming soon*] CSV file streaming | Planned |
-| `nalabdou/algebra-doctrine` | [*Comming soon*] Doctrine DBAL ResultSet | Planned |
+| [`nalabdou/algebra-symfony`](https://github.com/nalabdou/algebra-symfony) | Doctrine Collections, QueryBuilder | Available |
+| `nalabdou/algebra-laravel` | Eloquent Collections, Builder | Planned |
+| `nalabdou/algebra-twig` | All ops as Twig filters | Planned |
+| `nalabdou/algebra-csv` | CSV file streaming | Planned |
+| `nalabdou/algebra-doctrine` | Doctrine DBAL ResultSet | Planned |
 
 In the meantime, you can write your own adapter in under 10 lines.
 See [Custom adapters](custom.md).

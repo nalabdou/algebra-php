@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Nalabdou\Algebra\Tests\Unit\Expression;
 
 use Nalabdou\Algebra\Expression\PropertyAccessor;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(PropertyAccessor::class)]
 final class PropertyAccessorTest extends TestCase
 {
     private PropertyAccessor $accessor;

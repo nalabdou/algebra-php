@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace Nalabdou\Algebra\Tests\Integration;
 
 use Nalabdou\Algebra\Algebra;
+use Nalabdou\Algebra\Collection\RelationalCollection;
 use Nalabdou\Algebra\Result\PartitionResult;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * End-to-end integration tests using only the public Algebra::from() API.
- */
+#[CoversClass(Algebra::class)]
+#[CoversClass(RelationalCollection::class)]
 final class AlgebraIntegrationTest extends TestCase
 {
     private array $orders;

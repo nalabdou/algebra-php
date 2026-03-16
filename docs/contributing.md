@@ -175,6 +175,6 @@ Report bugs and request features at:
 https://github.com/nalabdou/algebra-php/issues
 
 Please include:
-- PHP version and `composer show | grep algebra-php`
+- PHP version and `composer show | grep algebra`
 - Minimal reproducible example
 - Expected vs actual output

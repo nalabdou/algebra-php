@@ -6,8 +6,11 @@ namespace Nalabdou\Algebra\Tests\Unit\Expression;
 
 use Nalabdou\Algebra\Expression\Lexer;
 use Nalabdou\Algebra\Expression\Token;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(Lexer::class)]
+#[CoversClass(Token::class)]
 final class LexerTest extends TestCase
 {
     private Lexer $lexer;

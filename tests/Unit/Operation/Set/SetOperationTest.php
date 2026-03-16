@@ -9,8 +9,13 @@ use Nalabdou\Algebra\Operation\Set\DiffByOperation;
 use Nalabdou\Algebra\Operation\Set\ExceptOperation;
 use Nalabdou\Algebra\Operation\Set\IntersectOperation;
 use Nalabdou\Algebra\Operation\Set\UnionOperation;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(IntersectOperation::class)]
+#[CoversClass(ExceptOperation::class)]
+#[CoversClass(UnionOperation::class)]
+#[CoversClass(DiffByOperation::class)]
 final class SetOperationTest extends TestCase
 {
     private \Nalabdou\Algebra\Expression\PropertyAccessor $accessor;

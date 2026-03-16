@@ -1,6 +1,6 @@
 # Pipeline branching
 
-algebra pipelines are **lazy and immutable**. Every operation method returns
+algebra-php pipelines are **lazy and immutable**. Every operation method returns
 a new collection instance — the original is never modified.
 
 This makes it safe to branch a pipeline and reuse intermediate results.

@@ -13,8 +13,18 @@ use Nalabdou\Algebra\Aggregate\Statistical\NtileAggregate;
 use Nalabdou\Algebra\Aggregate\String\BoolAndAggregate;
 use Nalabdou\Algebra\Aggregate\String\BoolOrAggregate;
 use Nalabdou\Algebra\Aggregate\String\StringAggAggregate;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(ModeAggregate::class)]
+#[CoversClass(CountDistinctAggregate::class)]
+#[CoversClass(NtileAggregate::class)]
+#[CoversClass(CumeDistAggregate::class)]
+#[CoversClass(FirstAggregate::class)]
+#[CoversClass(LastAggregate::class)]
+#[CoversClass(StringAggAggregate::class)]
+#[CoversClass(BoolAndAggregate::class)]
+#[CoversClass(BoolOrAggregate::class)]
 final class StatisticalAndStringAggregateTest extends TestCase
 {
     public function testModeReturnsMostFrequent(): void
